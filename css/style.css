@@ -1,0 +1,12 @@
+.image-part img {
+    height: 100%;
+}
+.calculation-part{
+    background-color: #f6fafb;
+    margin: auto;
+}
+.title {
+    font-family: monospace;
+    font-weight: bold;
+    color: indigo;
+}
