@@ -57,6 +57,9 @@ function savingCal(){
     if(saving > (parseFloat(balance.innerText)) ){
         console.log('Not enough balance for saving');
     }
+    else if(saving < 0){
+        console.log('Enter a postive value');
+    }
     else {
         SavingAmount.innerText = saving.toFixed(2);
     }
