@@ -13,6 +13,7 @@ const SavingAmount= document.getElementById('saving-amount');
 const span =document.createElement('span');
 span.setAttribute('id', 'not-valid')
 const parent = document.getElementById('expensesConatiner');
+const savingContainer = document.getElementById('saving-container');
 //event linstener on calculate button 
 calculateBtn.addEventListener('click', function(){
    const incomeNum = parseFloat(income.value); 
@@ -21,9 +22,15 @@ calculateBtn.addEventListener('click', function(){
    const clothesNum = parseFloat(clothes.value); 
    let sumOfExpenses;
    if(!isNaN(foodNum && rentNum && clothesNum) == true){
-    if(foodNum>0 && rentNum>0 && clothesNum) {
+    if(foodNum>=0 && rentNum>=0 && clothesNum>=0 ) {
         sumOfExpenses = foodNum + rentNum + clothesNum;
     }
+    }
+    else{
+        console.log('Not a number');
+      parent.appendChild(span).innerText='pls eneter correct information';
+    //   totallExpenses.innerText = '0';
+      
     }
      
   
@@ -34,6 +41,7 @@ calculateBtn.addEventListener('click', function(){
     
         let remainingBalance = incomeNum - sumOfExpenses;
         balance.innerText = remainingBalance.toFixed(2);
+       
         document.getElementById('not-valid').innerText = '';
   
     
@@ -42,7 +50,7 @@ calculateBtn.addEventListener('click', function(){
    }
    else {
     console.log('Not a number');
-      parent.appendChild(span).innerText='pls eneter coreect information';
+      parent.appendChild(span).innerText='pls eneter correct information';
       totallExpenses.innerText = '0';
       balance.innerText = incomeNum;
 
@@ -54,15 +62,20 @@ function savingCal(){
     
     saving = (parseFloat(balance.innerText) * parseFloat(saveInput.value)) / 100;
     // saving = parseFloat(balance.innerText) - saving;
-    if(saving > (parseFloat(balance.innerText)) ){
-        console.log('Not enough balance for saving');
-    }
-    else if(saving < 0){
-        console.log('Enter a postive value');
-    }
-    else {
+    if(saving < (parseFloat(balance.innerText)) && saving >= 0 ){
         SavingAmount.innerText = saving.toFixed(2);
+        savingContainer.appendChild(span).innerText='';
     }
+    // else if(saving ){
+    //    console.log('Not enough balance for saving');
+    //     savingContainer.appendChild(span).innerText='pls eneter coreect information';
+    // }
+    else {
+         console.log('Enter a postive value');
+        savingContainer.appendChild(span).innerText='pls eneter coreect information';
+    }
+
+
 
    
 
@@ -77,21 +90,3 @@ savingBtn.addEventListener('click', function(){
 
 
 
-//calculte function
-
-//input function
-// document.getElementById('income').addEventListener('keyup', function(event){
-//     var input = parseFloat(event.target.value);
-//     if(isNaN(input)){
-//       var p =document.createElement('p');
-//       var parent = document.getElementById('incomeBalanceContainer');
-//       parent.appendChild(p).innerText='pls eneter a number';
-      
-     
-      
-//     }
-//     else{
-//         console.log(event.target.value);
-//         parent.removeChild(p);
-//     }
-// })
