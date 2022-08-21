@@ -14,6 +14,8 @@ const span =document.createElement('span');
 span.setAttribute('id', 'not-valid')
 const parent = document.getElementById('expensesConatiner');
 const savingContainer = document.getElementById('saving-container');
+const notValid = document.getElementById('not-valid');
+
 //event linstener on calculate button 
 calculateBtn.addEventListener('click', function(){
    const incomeNum = parseFloat(income.value); 
@@ -24,6 +26,7 @@ calculateBtn.addEventListener('click', function(){
    if(!isNaN(foodNum && rentNum && clothesNum) == true){
     if(foodNum>=0 && rentNum>=0 && clothesNum>=0 ) {
         sumOfExpenses = foodNum + rentNum + clothesNum;
+
     }
     }
     else{
@@ -41,8 +44,13 @@ calculateBtn.addEventListener('click', function(){
     
         let remainingBalance = incomeNum - sumOfExpenses;
         balance.innerText = remainingBalance.toFixed(2);
+        saveInput.value = '';
+        SavingAmount.innerText = '';
+       
        
         document.getElementById('not-valid').innerText = '';
+      
+        
   
     
 
